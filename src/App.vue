@@ -1,19 +1,44 @@
 <template>
-  <div>
-    <router-link to="/blog" exact>GO TO BLOG!</router-link> |
-    <router-link to="/home" exact>Home</router-link>
-    <router-view></router-view>
-  </div>
+  <v-app>
+    <blog-navigation>
+      <!-- -->
+    </blog-navigation>
+
+    <blog-app-bar> </blog-app-bar>
+
+    <!-- Sizes your content based upon application components -->
+    <blog-main>
+      <!-- Provides the application the proper gutter -->
+      <v-container fluid>
+        <!-- If using vue-router -->
+        <router-view></router-view>
+      </v-container>
+    </blog-main>
+
+    <blog-footer app> </blog-footer>
+  </v-app>
 </template>
 
 <script>
+import BlogNavigation from "@/components/navs/BlogNavigation";
+import BlogAppBar from "@/components/navs/BlogAppBar";
+import BlogMain from "@/components/view/BlogMain";
+import BlogFooter from "@/components/navs/BlogFooter";
 export default {
   name: "App",
-
-  components: {},
-  created() {
-    console.log(process.env);
-    console.log("시발");
+  data() {
+    return {
+      pDrawer: false,
+    };
   },
+
+  components: {
+    BlogNavigation,
+    BlogAppBar,
+    BlogMain,
+    BlogFooter,
+  },
+  created() {},
+  methods: {},
 };
 </script>

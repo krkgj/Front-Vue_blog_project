@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
-import Blog from "@/components/Blog.vue";
+import Blog from "@/App.vue";
 
 Vue.use(VueRouter);
 const NotFound = { template: "<div>Not Found</div>" };
