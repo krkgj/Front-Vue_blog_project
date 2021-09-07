@@ -5,17 +5,15 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    drawer: false,
+    show: false,
+    click: false,
   },
   mutations: {
-    changeDrawerState(state, caller) {
-      if (caller.caller === "appBar") state.drawer = true;
-      // else if (caller.caller === "navigation" && state.drawer == true)
-      //   state.drawer = false;
-      console.log(state.drawer);
-      console.log(caller.caller);
+    updateDrawer(state, data) {
+      state.show = data.data;
     },
   },
+  getters: {},
   actions: {},
   modules: {},
 });

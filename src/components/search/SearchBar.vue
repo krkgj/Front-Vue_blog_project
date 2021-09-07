@@ -2,7 +2,7 @@
   <div>
     <v-text-field v-model="title" outlined @keypress.enter="searchBlog">
       <template v-slot:prepend-inner>
-        <v-icon>search</v-icon>
+        <v-icon class="searchIcon">search</v-icon>
       </template>
       <template v-slot:append>
         <v-progress-circular
@@ -31,3 +31,9 @@ export default {
   },
 };
 </script>
+
+<style>
+.searchIcon {
+  cursor: pointer;
+}
+</style>

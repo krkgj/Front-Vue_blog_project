@@ -4,7 +4,9 @@
       <!-- -->
     </blog-navigation>
 
-    <blog-app-bar> </blog-app-bar>
+    <blog-app-bar
+      ><template v-slot:searchBar><search-bar></search-bar> </template
+    ></blog-app-bar>
 
     <!-- Sizes your content based upon application components -->
     <blog-main>
@@ -24,6 +26,7 @@ import BlogNavigation from "@/components/navs/BlogNavigation";
 import BlogAppBar from "@/components/navs/BlogAppBar";
 import BlogMain from "@/components/view/BlogMain";
 import BlogFooter from "@/components/navs/BlogFooter";
+import SearchBar from "./components/search/SearchBar.vue";
 export default {
   name: "App",
   data() {
@@ -37,8 +40,14 @@ export default {
     BlogAppBar,
     BlogMain,
     BlogFooter,
+    SearchBar,
   },
   created() {},
   methods: {},
 };
 </script>
+<style scoped>
+#app {
+  font-family: "Do Hyeon", sans-serif;
+}
+</style>
