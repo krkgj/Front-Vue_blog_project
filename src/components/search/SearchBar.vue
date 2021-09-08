@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card height="56px">
     <v-text-field v-model="title" outlined @keypress.enter="searchBlog">
       <template v-slot:prepend-inner>
         <v-icon class="searchIcon">search</v-icon>
@@ -21,7 +21,7 @@ export default {
   data() {
     return {
       title: "",
-      loading: false,
+      loading: true,
     };
   },
   methods: {
