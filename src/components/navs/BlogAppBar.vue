@@ -4,18 +4,10 @@
       <v-app-bar-nav-icon
         @click="$store.commit('updateDrawer', { data: true })"
       ></v-app-bar-nav-icon>
-      <v-badge avatar bordered overlap>
-        <template v-slot:badge>
-          <v-avatar>
-            <v-img src="https://cdn.vuetifyjs.com/images/logos/v.png"></v-img>
-          </v-avatar>
-        </template>
-
-        <v-avatar size="40">
-          <v-img src="../../assets/kyeongjin.png"></v-img>
-        </v-avatar>
-      </v-badge>
-      <v-toolbar-title
+      <v-avatar size="40">
+        <v-img src="../../assets/kyeongjin.png"></v-img>
+      </v-avatar>
+      <v-toolbar-title style="font-weight:700"
         >&nbsp;&nbsp;김경진의 개발 블로그</v-toolbar-title
       > </v-app-bar
     ><slot name="searchBar"></slot>

@@ -16,8 +16,8 @@
       <p>ddddddddddddddddddddd</p>
       <p>ddddddddddddddddddddd</p>
       <p>ddddddddddddddddddddd</p>
-      <p>ddddddddddddddddddddd</p></v-card
-    >
+      <p>ddddddddddddddddddddd</p>
+    </v-card>
   </v-main>
 </template>
 

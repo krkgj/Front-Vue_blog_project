@@ -8,6 +8,7 @@
       ><template v-slot:searchBar><search-bar></search-bar> </template
     ></blog-app-bar>
 
+    <blog-editor></blog-editor>
     <!-- Sizes your content based upon application components -->
     <blog-main>
       <!-- Provides the application the proper gutter -->
@@ -16,8 +17,7 @@
         <router-view></router-view>
       </v-container>
     </blog-main>
-
-    <blog-footer app> </blog-footer>
+    <blog-footer></blog-footer>
   </v-app>
 </template>
 
@@ -26,7 +26,8 @@ import BlogNavigation from "@/components/navs/BlogNavigation";
 import BlogAppBar from "@/components/navs/BlogAppBar";
 import BlogMain from "@/components/view/BlogMain";
 import BlogFooter from "@/components/navs/BlogFooter";
-import SearchBar from "./components/search/SearchBar.vue";
+import BlogEditor from "@/components/view/BlogEditor";
+import SearchBar from "@/components/search/SearchBar";
 export default {
   name: "App",
   data() {
@@ -40,6 +41,7 @@ export default {
     BlogAppBar,
     BlogMain,
     BlogFooter,
+    BlogEditor,
     SearchBar,
   },
   created() {},
@@ -48,6 +50,6 @@ export default {
 </script>
 <style scoped>
 #app {
-  font-family: "Jua", sans-serif;
+  font-family: "Noto Sans KR", sans-serif;
 }
 </style>
