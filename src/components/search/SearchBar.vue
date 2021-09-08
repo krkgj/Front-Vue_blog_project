@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <v-card>
     <v-text-field v-model="title" outlined @keypress.enter="searchBlog">
       <template v-slot:prepend-inner>
         <v-icon class="searchIcon">search</v-icon>
@@ -13,7 +13,7 @@
         />
       </template>
     </v-text-field>
-  </div>
+  </v-card>
 </template>
 
 <script>

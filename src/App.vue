@@ -48,6 +48,6 @@ export default {
 </script>
 <style scoped>
 #app {
-  font-family: "Do Hyeon", sans-serif;
+  font-family: "Jua", sans-serif;
 }
 </style>
