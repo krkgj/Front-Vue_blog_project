@@ -1,24 +1,29 @@
-# blog_project_vue
+# 개발자 김경진의 블로그 개발 프로젝트 😎
 
-## Project setup
+[![Vue](/images/vue.png)]
+
+## 프론트로 Vue, 백으로 Spring을 사용할 예정입니다.
+
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### 개발시 커맨드
+
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+### 빌드 및 배포시 커맨드
+
 ```
 npm run build
 ```
 
-### Lints and fixes files
+### eslint?
+
 ```
 npm run lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+###
