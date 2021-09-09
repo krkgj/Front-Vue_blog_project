@@ -5,12 +5,12 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    show: false,
+    drawer: false,
     click: false,
   },
   mutations: {
     updateDrawer(state, data) {
-      state.show = data.data;
+      state.drawer = data.data;
     },
   },
   getters: {},

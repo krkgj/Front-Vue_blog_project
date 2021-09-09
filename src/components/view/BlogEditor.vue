@@ -1,8 +1,10 @@
 <template>
-  <v-sheet>
-    <v-subheader>Editor</v-subheader>
-    <editor :options="options"></editor>
-  </v-sheet>
+  <v-card>
+    <v-sheet>
+      <v-subheader>Editor</v-subheader>
+      <editor :options="options" height="900px"></editor>
+    </v-sheet>
+  </v-card>
 </template>
 <script>
 export default {
@@ -11,6 +13,7 @@ export default {
       options: {
         language: "ko",
       },
+      height: "700",
     };
   },
 };
