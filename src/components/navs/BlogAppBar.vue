@@ -2,14 +2,14 @@
   <v-card>
     <v-app-bar
       white
-      class="d-flex pa-0 ma-0"
+      class="pa-0 ma-0"
       style="width:100%"
       prominent
       fixed
       hide-on-scroll
     >
       <v-app-bar-nav-icon
-        class="float-left"
+        class="float-left align-self-center"
         @click="$store.commit('updateDrawer', { data: true })"
       ></v-app-bar-nav-icon>
       <!-- <v-avatar size="40">
@@ -18,8 +18,11 @@
       <v-toolbar-title
         style="font-weight:700;width:100%"
         class="justify-center align-self-center"
+        @click="routeMain"
       >
-        김경진의 개발 블로그
+        <v-btn x-large>
+          피곤한 개발자의 개발 일기 😎
+        </v-btn>
       </v-toolbar-title>
     </v-app-bar>
     <slot name="searchBar"></slot>
@@ -41,6 +44,9 @@ export default {
   },
   methods: {
     setAppBarState() {},
+    routeMain() {
+      console.log("adww");
+    },
   },
 };
 </script>

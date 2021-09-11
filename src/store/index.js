@@ -6,11 +6,14 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     drawer: false,
-    click: false,
+    categoryList: [],
   },
   mutations: {
     updateDrawer(state, data) {
       state.drawer = data.data;
+    },
+    setCategoryList(state, categoryList) {
+      state.categoryList = categoryList;
     },
   },
   getters: {},

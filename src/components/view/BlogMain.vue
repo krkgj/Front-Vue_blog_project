@@ -1,5 +1,5 @@
 <template>
-  <v-card ma="3">dddd </v-card>
+  <v-card ma="3"> </v-card>
 </template>
 
 <script>

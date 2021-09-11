@@ -1,36 +1,35 @@
 <template>
-  <div>
+  <v-container class="mt-14">
     <v-card
-      class="mx-auto my-5"
+      class="mx-auto my-3"
       max-width="95%"
       elevation="5"
       shaped
       style="cursor:pointer"
-      v-for="(post, i) in postList"
-      :key="i"
+      v-for="post in postList"
+      :key="post.seq"
     >
       <v-card-title>
         {{ post.title }}
       </v-card-title>
-
-      <v-card-subtitle v-for="(tag, i) in post.tags" :key="i">
-        ddd
-      </v-card-subtitle>
+      <v-chip-group class="ml-3 my-0" active-class="primary--text">
+        <v-chip v-for="(tag, i) in post.tags" :key="i">
+          {{ tag }}
+        </v-chip>
+      </v-chip-group>
 
       <v-card-actions>
-        <v-btn color="orange lighten-2" text>
-          읽어보기
-        </v-btn>
-
         <v-spacer></v-spacer>
 
-        <v-btn icon @click="show = !show">
-          <v-icon>{{ show ? "mdi-chevron-up" : "mdi-chevron-down" }}</v-icon>
+        <v-btn icon @click="showContentTruncate($event)" :id="post.seq">
+          <v-icon>
+            {{ post.show ? "mdi-chevron-up" : "mdi-chevron-down" }}
+          </v-icon>
         </v-btn>
       </v-card-actions>
 
       <v-expand-transition>
-        <div v-show="show">
+        <div v-show="post.show">
           <v-divider></v-divider>
 
           <v-card-text class="text-truncate">
@@ -39,7 +38,7 @@
         </div>
       </v-expand-transition>
     </v-card>
-  </div>
+  </v-container>
 </template>
 
 <script>
@@ -47,9 +46,32 @@ import PostList from "@/components/datas/boardPostList";
 export default {
   data() {
     return {
-      show: false,
       postList: PostList,
     };
+  },
+
+  methods: {
+    showContentTruncate(e) {
+      let id = e.currentTarget.id;
+      this.postList[id - 1].show = !this.postList[id - 1].show;
+    },
+  },
+
+  // computed: {
+  //   shows: {
+  //     get() {},
+  //     set() {},
+  //   },
+  // },
+
+  // vue가 마운트 되었을 때?
+  mounted() {
+    // postList의 각 요소에 show라는 키로 false 값을 set 한다.
+    this.postList.forEach((element) => {
+      this.$set(element, "show", false);
+    });
+
+    this.$store.commit("setCategoryList", { data: this.postList });
   },
 };
 </script>

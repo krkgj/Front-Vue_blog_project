@@ -12,7 +12,7 @@
       </blog-app-bar>
 
       <v-main v-if="showEditor">
-        <blog-editor></blog-editor>
+        <blog-writing></blog-writing>
       </v-main>
       <v-main v-else>
         <!-- <blog-main>
@@ -33,11 +33,10 @@
 <script>
 import BlogNavigation from "@/components/navs/BlogNavigation";
 import BlogAppBar from "@/components/navs/BlogAppBar";
-import BlogMain from "@/components/view/BlogMain";
 import BlogFooter from "@/components/navs/BlogFooter";
-import BlogEditor from "@/components/view/BlogEditor";
 import SearchBar from "@/components/search/SearchBar";
-import BlogPostList from "@/components/view/BlogPostList.vue";
+import BlogWriting from "@/components/view/BlogWriting";
+import BlogPostList from "@/components/view/BlogPostList";
 export default {
   name: "App",
   data() {
@@ -49,9 +48,8 @@ export default {
   components: {
     BlogNavigation,
     BlogAppBar,
-    BlogMain,
     BlogFooter,
-    BlogEditor,
+    BlogWriting,
     SearchBar,
     BlogPostList,
   },
