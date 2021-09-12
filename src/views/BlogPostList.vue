@@ -12,15 +12,16 @@
       <v-card-title>
         {{ post.title }}
       </v-card-title>
-      <v-chip-group class="ml-3 my-0" active-class="primary--text">
+      <v-chip-group class="ml-3 my-0">
         <v-chip v-for="(tag, i) in post.tags" :key="i">
           {{ tag }}
         </v-chip>
       </v-chip-group>
 
+      <v-card-text> 등록날짜 : {{ post.createtime }} </v-card-text>
+
       <v-card-actions>
         <v-spacer></v-spacer>
-
         <v-btn icon @click="showContentTruncate($event)" :id="post.seq">
           <v-icon>
             {{ post.show ? "mdi-chevron-up" : "mdi-chevron-down" }}
@@ -66,6 +67,23 @@ export default {
 
   // vue가 마운트 되었을 때?
   mounted() {
+    // this.postList.forEach((value) => {
+    //   console.log(value.createtime);
+
+    //   if(value.createtime.substr(0, 4) === value.createtime.substr(0, 4))
+    //   console.log(value.createtime.substr(5, 2));
+    //   console.log(value.createtime.substr(8, 2));
+    //   console.log(value.createtime.substr(11, 2));
+    //   console.log(value.createtime.substr(14, 2));
+    //   console.log(value.createtime.substr(17, 2));
+    // });
+
+    this.postList.sort((e1, e2) => {
+      console.log(e1.createtime);
+      console.log("==============");
+      console.log(e2.createtime);
+      console.log("==============");
+    });
     // postList의 각 요소에 show라는 키로 false 값을 set 한다.
     this.postList.forEach((element) => {
       this.$set(element, "show", false);

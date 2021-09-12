@@ -2,6 +2,7 @@ const postList = [
   {
     seq: 1,
     title: "Spring에 대해서 알아봅니다.",
+    createtime: "2021-09-21 13:47:31",
     tags: ["#JAVA", "#SPRING"],
     routeLink: "",
     category: 1,
@@ -11,6 +12,7 @@ const postList = [
   {
     seq: 2,
     title: "Vue와 자바스크립트 ES6에 대해서 알아보겠습니다.",
+    createtime: "2021-09-21 13:11:31",
     tags: ["#VUE", "#JAVASCRIPT", "#SPA"],
     routeLink: "",
     category: 2,
@@ -20,6 +22,7 @@ const postList = [
   {
     seq: 3,
     title: "Git이란?",
+    createtime: "2021-09-21 13:55:31",
     tags: ["#GIT", "#CI/CD"],
     category: 3,
     routeLink: "",
@@ -29,6 +32,7 @@ const postList = [
   {
     seq: 4,
     title: "Linux/Ubuntu에 대해서 알아보자.",
+    createtime: "2021-09-21 13:22:31",
     tags: ["#LINUX", "#SPRING"],
     routeLink: "",
     category: 4,
@@ -38,6 +42,7 @@ const postList = [
   {
     seq: 5,
     title: "MySQL/Oracle는 RDBMS",
+    createtime: "2021-09-21 13:36:31",
     tags: ["#DB", "#MYSQL", "#ORACLE"],
     routeLink: "",
     category: 5,
@@ -47,6 +52,7 @@ const postList = [
   {
     seq: 6,
     title: "코딩 테스트 준비하기",
+    createtime: "2021-09-21 13:13:31",
     tags: ["#CODING", "#CODINGTEST"],
     routeLink: "",
     category: 6,

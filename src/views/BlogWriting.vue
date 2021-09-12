@@ -5,24 +5,23 @@
         v-model="name"
         :counter="10"
         :rules="nameRules"
-        label="게시글 제목"
+        label="게시글 제목*"
         required
       ></v-text-field>
 
-      <v-select v-model="category" label="카테고리" required></v-select>
+      <v-select v-model="category" label="카테고리*" required></v-select>
 
       <v-divider></v-divider>
-      <v-row class="my-1 mx-0">
+
+      <v-row class="my-2 mx-0">
         <v-col class="mt-2 pa-0" cols="12">
-          <v-card>
-            <v-sheet color="#fff">
-              <editor
-                ref="toastEditor"
-                :options="options"
-                height="700px"
-              ></editor>
-            </v-sheet>
-          </v-card>
+          <v-sheet color="#fff">
+            <editor
+              ref="toastEditor"
+              :options="options"
+              height="700px"
+            ></editor>
+          </v-sheet>
         </v-col>
       </v-row>
       <v-row class="mt-2 mx-0 px-0">
@@ -46,7 +45,7 @@
       </v-row>
       <v-row class="mx-0 pt-0 mb-2">
         <v-col class="text-right mx-0 px-0">
-          <v-btn text-align x-large @click="submit">
+          <v-btn text-align x-large @click="submitd">
             저장
           </v-btn>
         </v-col>
@@ -63,6 +62,12 @@ export default {
       },
       tagTextField: "",
       tagList: [],
+      submit: {
+        title: "",
+        category: "",
+        content: "",
+        tags: [],
+      },
     };
   },
   methods: {
@@ -84,7 +89,7 @@ export default {
       this.tagList.splice(index, 1);
     },
 
-    submit() {
+    submitd() {
       alert(this.$refs.toastEditor.invoke("getHTML"));
     },
   },
