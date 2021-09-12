@@ -35,8 +35,8 @@ import BlogNavigation from "@/components/navs/BlogNavigation";
 import BlogAppBar from "@/components/navs/BlogAppBar";
 import BlogFooter from "@/components/navs/BlogFooter";
 import SearchBar from "@/components/search/SearchBar";
-import BlogWriting from "@/components/view/BlogWriting";
-import BlogPostList from "@/components/view/BlogPostList";
+import BlogWriting from "@/views/BlogWriting";
+import BlogPostList from "@/views/BlogPostList";
 export default {
   name: "App",
   data() {
@@ -62,7 +62,8 @@ export default {
   },
 };
 </script>
-<style scoped>
+
+<style>
 #app {
   font-family: "Noto Sans KR", sans-serif;
 }

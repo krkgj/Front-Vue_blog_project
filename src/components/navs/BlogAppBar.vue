@@ -16,13 +16,11 @@
         <v-img src="../../assets/kyeongjin.png"></v-img>
       </v-avatar> -->
       <v-toolbar-title
-        style="font-weight:700;width:100%"
+        style="font-weight:700;width:100%;cursor:pointer;"
         class="justify-center align-self-center"
         @click="routeMain"
       >
-        <v-btn x-large>
-          피곤한 개발자의 개발 일기 😎
-        </v-btn>
+        피곤한 개발자의 개발 일기 😎
       </v-toolbar-title>
     </v-app-bar>
     <slot name="searchBar"></slot>
