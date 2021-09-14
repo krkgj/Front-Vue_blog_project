@@ -3,20 +3,11 @@ import Vuex from "vuex";
 
 Vue.use(Vuex);
 
+// import PostStore from "@/store/postStore.js";
+import NavStore from "@/store/navStore.js";
+import DrawerStore from "@/store/drawerStore.js";
+import PostStore from "@/store/postStore.js";
+
 export default new Vuex.Store({
-  state: {
-    drawer: false,
-    categoryList: [],
-  },
-  mutations: {
-    updateDrawer(state, data) {
-      state.drawer = data.data;
-    },
-    setCategoryList(state, categoryList) {
-      state.categoryList = categoryList;
-    },
-  },
-  getters: {},
-  actions: {},
-  modules: {},
+  modules: { NavStore, DrawerStore, PostStore },
 });

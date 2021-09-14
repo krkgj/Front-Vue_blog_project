@@ -37,6 +37,7 @@ import BlogFooter from "@/components/navs/BlogFooter";
 import SearchBar from "@/components/search/SearchBar";
 import BlogWriting from "@/views/BlogWriting";
 import BlogPostList from "@/views/BlogPostList";
+import { mapGetters, mapMutations } from "vuex";
 export default {
   name: "App",
   data() {
@@ -56,9 +57,12 @@ export default {
   created() {},
   methods: {
     showWritingEditor() {
-      this.$store.commit("updateDrawer", { data: false });
+      this.SET_DRAWER_STATE({ isDrawer: false });
       this.showEditor = !this.showEditor;
     },
+    ...mapMutations({
+      SET_DRAWER_STATE: "DrawerStore/SET_DRAWER_STATE",
+    }),
   },
 };
 </script>

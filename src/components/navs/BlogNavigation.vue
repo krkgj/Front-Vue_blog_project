@@ -97,6 +97,7 @@
 
 <script>
 import categoryList from "@/components/datas/boardCategorys";
+import { mapGetters, mapMutations } from "vuex";
 
 export default {
   data() {
@@ -111,14 +112,22 @@ export default {
       boardIcon: "keyboard_arrow_right",
     };
   },
-  methods: {},
+  methods: {
+    ...mapMutations({
+      SET_DRAWER_STATE: "DrawerStore/SET_DRAWER_STATE",
+    }),
+  },
   computed: {
+    // mapGetters는 computed에 위치?
+    ...mapGetters({
+      GET_DRAWER_STATE: "DrawerStore/GET_DRAWER_STATE",
+    }),
     drawer: {
       get() {
-        return this.$store.state.drawer;
+        return this.GET_DRAWER_STATE;
       },
       set(data) {
-        return this.$store.commit("updateDrawer", { data: data });
+        return this.SET_DRAWER_STATE({ isDrawer: data });
       },
     },
   },

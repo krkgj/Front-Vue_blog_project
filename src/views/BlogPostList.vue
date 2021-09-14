@@ -44,6 +44,8 @@
 
 <script>
 import PostList from "@/components/datas/boardPostList";
+import { mapMutations } from "vuex";
+
 export default {
   data() {
     return {
@@ -56,6 +58,9 @@ export default {
       let id = e.currentTarget.id;
       this.postList[id - 1].show = !this.postList[id - 1].show;
     },
+    ...mapMutations({
+      SET_CATEGORY_LIST: "NavStore/SET_CATEGORY_LIST",
+    }),
   },
 
   // computed: {
@@ -67,29 +72,63 @@ export default {
 
   // vue가 마운트 되었을 때?
   mounted() {
-    // this.postList.forEach((value) => {
-    //   console.log(value.createtime);
-
-    //   if(value.createtime.substr(0, 4) === value.createtime.substr(0, 4))
-    //   console.log(value.createtime.substr(5, 2));
-    //   console.log(value.createtime.substr(8, 2));
-    //   console.log(value.createtime.substr(11, 2));
-    //   console.log(value.createtime.substr(14, 2));
-    //   console.log(value.createtime.substr(17, 2));
-    // });
-
+    // 게시글 내림차순 정렬
     this.postList.sort((e1, e2) => {
-      console.log(e1.createtime);
-      console.log("==============");
-      console.log(e2.createtime);
-      console.log("==============");
+      if (
+        Number(e1.createtime.substr(0, 4)) != Number(e2.createtime.substr(0, 4))
+      )
+        return -(
+          Number(e1.createtime.substr(0, 4)) -
+          Number(e2.createtime.substr(0, 4))
+        );
+      else if (
+        Number(e1.createtime.substr(5, 2)) != Number(e2.createtime.substr(5, 2))
+      )
+        return -(
+          Number(e1.createtime.substr(5, 2)) -
+          Number(e2.createtime.substr(5, 2))
+        );
+      else if (
+        Number(e1.createtime.substr(8, 2)) != Number(e2.createtime.substr(8, 2))
+      )
+        return -(
+          Number(e1.createtime.substr(8, 2)) -
+          Number(e2.createtime.substr(8, 2))
+        );
+      else if (
+        Number(e1.createtime.substr(11, 2)) !=
+        Number(e2.createtime.substr(11, 2))
+      )
+        return -(
+          Number(e1.createtime.substr(11, 2)) -
+          Number(e2.createtime.substr(11, 2))
+        );
+      else if (
+        Number(e1.createtime.substr(14, 2)) !=
+        Number(e2.createtime.substr(14, 2))
+      )
+        return -(
+          Number(e1.createtime.substr(14, 2)) -
+          Number(e2.createtime.substr(14, 2))
+        );
+      else if (
+        Number(e1.createtime.substr(17, 2)) !=
+        Number(e2.createtime.substr(17, 2))
+      )
+        return -(
+          Number(e1.createtime.substr(17, 2)) -
+          Number(e2.createtime.substr(17, 2))
+        );
     });
+
     // postList의 각 요소에 show라는 키로 false 값을 set 한다.
     this.postList.forEach((element) => {
       this.$set(element, "show", false);
     });
 
-    this.$store.commit("setCategoryList", { data: this.postList });
+    this.SET_CATEGORY_LIST({
+      list: this.postList,
+    });
   },
 };
 </script>

@@ -10,7 +10,7 @@
     >
       <v-app-bar-nav-icon
         class="float-left align-self-center"
-        @click="$store.commit('updateDrawer', { data: true })"
+        @click="setDrawerState"
       ></v-app-bar-nav-icon>
       <!-- <v-avatar size="40">
         <v-img src="../../assets/kyeongjin.png"></v-img>
@@ -28,6 +28,7 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
 export default {
   data() {
     return {
@@ -41,9 +42,13 @@ export default {
     },
   },
   methods: {
-    setAppBarState() {},
-    routeMain() {
-      console.log("adww");
+    // 뮤테이션 사용 mapMutation은 methods에 위치해야한다.
+    ...mapMutations({ SET_DRAWER_STATE: "DrawerStore/SET_DRAWER_STATE" }),
+    routeMain() {},
+    setDrawerState() {
+      this.SET_DRAWER_STATE({
+        isDrawer: true,
+      });
     },
   },
 };

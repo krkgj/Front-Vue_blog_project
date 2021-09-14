@@ -6,8 +6,8 @@ const categoryList = [
     count: 4,
   },
   {
-    title: "Javascript/VueJS",
-    path: "/blog/javascript-vuejs",
+    title: "Javascript/VueJS/ReactJS",
+    path: "/blog/javascript-vue-react",
     category: 2,
     count: 3,
   },

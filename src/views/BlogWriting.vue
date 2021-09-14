@@ -2,14 +2,24 @@
   <v-container class="mt-16">
     <v-form class="ma-0 pa-0" ref="form" v-model="valid" lazy-validation>
       <v-text-field
-        v-model="name"
+        v-model="title"
         :counter="10"
         :rules="nameRules"
         label="게시글 제목*"
         required
       ></v-text-field>
 
-      <v-select v-model="category" label="카테고리*" required></v-select>
+      <v-select
+        v-model="category"
+        label="카테고리*"
+        :items="categoryList"
+        item-text="title"
+        item-value="category"
+        persistent-hint
+        return-object
+        single-line
+        required
+      ></v-select>
 
       <v-divider></v-divider>
 
@@ -54,6 +64,7 @@
   </v-container>
 </template>
 <script>
+import CategoryList from "@/components/datas/boardCategorys";
 export default {
   data() {
     return {
@@ -61,6 +72,7 @@ export default {
         language: "ko",
       },
       tagTextField: "",
+      categoryList: [],
       tagList: [],
       submit: {
         title: "",
@@ -92,6 +104,9 @@ export default {
     submitd() {
       alert(this.$refs.toastEditor.invoke("getHTML"));
     },
+  },
+  mounted() {
+    this.categoryList = CategoryList;
   },
 };
 </script>
