@@ -6,7 +6,7 @@
       elevation="5"
       shaped
       style="cursor:pointer"
-      v-for="post in postList"
+      v-for="(post, index) in postList"
       :key="post.seq"
     >
       <v-card-title>
@@ -22,7 +22,7 @@
 
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn icon @click="showContentTruncate($event)" :id="post.seq">
+        <v-btn icon @click="showContentTruncate($event)" :id="index">
           <v-icon>
             {{ post.show ? "mdi-chevron-up" : "mdi-chevron-down" }}
           </v-icon>
@@ -55,8 +55,9 @@ export default {
 
   methods: {
     showContentTruncate(e) {
+      // console.log(e.currentTarget.id);
       let id = e.currentTarget.id;
-      this.postList[id - 1].show = !this.postList[id - 1].show;
+      this.postList[id].show = !this.postList[id].show;
     },
     ...mapMutations({
       SET_CATEGORY_LIST: "NavStore/SET_CATEGORY_LIST",
@@ -73,6 +74,10 @@ export default {
   // vue가 마운트 되었을 때?
   mounted() {
     // 게시글 내림차순 정렬
+    this.postList.forEach((element) => {
+      console.log(element.seq);
+    });
+    console.log("before sort");
     this.postList.sort((e1, e2) => {
       if (
         Number(e1.createtime.substr(0, 4)) != Number(e2.createtime.substr(0, 4))
@@ -119,6 +124,10 @@ export default {
           Number(e1.createtime.substr(17, 2)) -
           Number(e2.createtime.substr(17, 2))
         );
+    });
+
+    this.postList.forEach((element) => {
+      console.log(element.seq);
     });
 
     // postList의 각 요소에 show라는 키로 false 값을 set 한다.

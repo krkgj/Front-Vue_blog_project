@@ -1,10 +1,16 @@
 <template>
   <v-container class="mt-16">
-    <v-form class="ma-0 pa-0" ref="form" v-model="valid" lazy-validation>
+    <v-form
+      class="ma-0 pa-0"
+      ref="form"
+      v-model="valid"
+      @submit="regist"
+      method="post"
+      lazy-validation
+    >
       <v-text-field
-        v-model="title"
+        v-model="submit.title"
         :counter="10"
-        :rules="nameRules"
         label="게시글 제목*"
         required
       ></v-text-field>
@@ -15,7 +21,6 @@
         :items="categoryList"
         item-text="title"
         item-value="category"
-        persistent-hint
         return-object
         single-line
         required
@@ -47,7 +52,11 @@
         <v-col class="my-0 pa-0" cols="10">
           <v-chip-group class="ml-3" column>
             <!-- 태그 클릭 시 삭제 -->
-            <v-chip v-for="(tag, i) in tagList" :key="i" @click="removeTag(i)">
+            <v-chip
+              v-for="(tag, i) in submit.tags"
+              :key="i"
+              @click="removeTag(i)"
+            >
               {{ tag }}
             </v-chip>
           </v-chip-group>
@@ -55,7 +64,7 @@
       </v-row>
       <v-row class="mx-0 pt-0 mb-2">
         <v-col class="text-right mx-0 px-0">
-          <v-btn text-align x-large @click="submitd">
+          <v-btn text-align x-large @click="regist">
             저장
           </v-btn>
         </v-col>
@@ -72,8 +81,9 @@ export default {
         language: "ko",
       },
       tagTextField: "",
+      valueas: {},
       categoryList: [],
-      tagList: [],
+      category: "",
       submit: {
         title: "",
         category: "",
@@ -92,7 +102,7 @@ export default {
       } else {
         tag = this.tagTextField;
       }
-      this.tagList.push(tag);
+      this.submit.tags.push(tag);
       this.tagTextField = "";
     },
 
@@ -101,8 +111,14 @@ export default {
       this.tagList.splice(index, 1);
     },
 
-    submitd() {
-      alert(this.$refs.toastEditor.invoke("getHTML"));
+    regist() {
+      console.log("타이틀 - " + this.submit.title);
+      console.log("본문 - " + this.$refs.toastEditor.invoke("getHTML"));
+      console.log("태그들 - " + this.submit.tags);
+      console.log("카테고리 - " + this.category.category);
+    },
+    consoleLog(e) {
+      console.log(e);
     },
   },
   mounted() {
