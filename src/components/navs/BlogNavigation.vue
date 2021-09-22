@@ -58,7 +58,11 @@
 
       <v-divider></v-divider>
 
-      <v-list-item active-class="deep-purple--text text--accent-2">
+      <v-list-item
+        active-class="deep-purple--text text--accent-2"
+        style="cursor:pointer"
+        @click="routingMain"
+      >
         <v-list-item-icon>
           <v-icon v-text="navMain.icon"></v-icon>
         </v-list-item-icon>
@@ -113,15 +117,25 @@ export default {
     };
   },
   methods: {
-    ...mapMutations({
-      SET_DRAWER_STATE: "DrawerStore/SET_DRAWER_STATE",
-    }),
+    ...mapMutations({ SET_DRAWER_STATE: "DrawerStore/SET_DRAWER_STATE" }),
+
+    // url path가 /와 같으면 router push 하지 않는다. /가 아닐 때만 routing push
+    routingMain() {
+      let path = window.location.pathname;
+
+      this.SET_DRAWER_STATE({ isDrawer: false });
+      if (path !== "/") {
+        this.$router.push("/");
+      }
+    },
   },
   computed: {
     // mapGetters는 computed에 위치?
     ...mapGetters({
       GET_DRAWER_STATE: "DrawerStore/GET_DRAWER_STATE",
     }),
+
+    // nav의 show or hidden을 정하는 drawer를 vuex store에 정의하여두었다.
     drawer: {
       get() {
         return this.GET_DRAWER_STATE;

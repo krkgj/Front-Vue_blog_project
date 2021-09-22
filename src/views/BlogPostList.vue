@@ -5,11 +5,14 @@
       max-width="95%"
       elevation="5"
       shaped
-      style="cursor:pointer"
       v-for="(post, index) in postList"
       :key="post.seq"
     >
-      <v-card-title>
+      <v-card-title
+        style="cursor:pointer"
+        @click="routingPost($event)"
+        :id="post.seq"
+      >
         {{ post.title }}
       </v-card-title>
       <v-chip-group class="ml-3 my-0">
@@ -54,14 +57,20 @@ export default {
   },
 
   methods: {
+    // vuex의 모든 mutation 갖고옴
+    ...mapMutations({ SET_CATEGORY_LIST: "NavStore/SET_CATEGORY_LIST" }),
+
     showContentTruncate(e) {
-      // console.log(e.currentTarget.id);
+      console.log(e.currentTarget.id);
       let id = e.currentTarget.id;
       this.postList[id].show = !this.postList[id].show;
     },
-    ...mapMutations({
-      SET_CATEGORY_LIST: "NavStore/SET_CATEGORY_LIST",
-    }),
+
+    // e.currentTarget시에는 class, id등 DOM 요소에서 사용할 수 있는 요소명으로 넣어줘야한다.
+    routingPost(e) {
+      let seq = e.currentTarget.id;
+      console.log(seq);
+    },
   },
 
   // computed: {
@@ -74,10 +83,6 @@ export default {
   // vue가 마운트 되었을 때?
   mounted() {
     // 게시글 내림차순 정렬
-    this.postList.forEach((element) => {
-      console.log(element.seq);
-    });
-    console.log("before sort");
     this.postList.sort((e1, e2) => {
       if (
         Number(e1.createtime.substr(0, 4)) != Number(e2.createtime.substr(0, 4))
@@ -124,10 +129,6 @@ export default {
           Number(e1.createtime.substr(17, 2)) -
           Number(e2.createtime.substr(17, 2))
         );
-    });
-
-    this.postList.forEach((element) => {
-      console.log(element.seq);
     });
 
     // postList의 각 요소에 show라는 키로 false 값을 set 한다.
