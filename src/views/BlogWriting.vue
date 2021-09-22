@@ -3,7 +3,6 @@
     <v-form
       class="ma-0 pa-0"
       ref="form"
-      v-model="valid"
       @submit="regist"
       method="post"
       lazy-validation
@@ -33,6 +32,7 @@
           <v-sheet color="#fff">
             <editor
               ref="toastEditor"
+              @change="inputContent"
               :options="options"
               height="700px"
             ></editor>
@@ -111,14 +111,15 @@ export default {
       this.tagList.splice(index, 1);
     },
 
+    inputContent() {
+      this.submit.content = this.$refs.toastEditor.invoke("getHTML");
+    },
+    // 저장 버튼 클릭 => submit? regist?
     regist() {
       console.log("타이틀 - " + this.submit.title);
-      console.log("본문 - " + this.$refs.toastEditor.invoke("getHTML"));
+      console.log("본문 - " + this.submit.content);
       console.log("태그들 - " + this.submit.tags);
       console.log("카테고리 - " + this.category.category);
-    },
-    consoleLog(e) {
-      console.log(e);
     },
   },
   mounted() {
