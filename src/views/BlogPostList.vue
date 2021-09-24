@@ -10,7 +10,7 @@
     >
       <v-card-title
         style="cursor:pointer"
-        @click="routingPost($event)"
+        @click="goPostContent($event)"
         :id="post.seq"
       >
         {{ post.title }}
@@ -67,9 +67,21 @@ export default {
     },
 
     // e.currentTarget시에는 class, id등 DOM 요소에서 사용할 수 있는 요소명으로 넣어줘야한다.
-    routingPost(e) {
-      let seq = e.currentTarget.id;
-      console.log(seq);
+    // axios로 postList에서 seq값을 where 절로 던져 seq에 해당하는 데이터를 갖고와야한다.
+    goPostContent(e) {
+      let seq = parseInt(e.currentTarget.id);
+      let postContent;
+      // console.log(seq);
+      this.postList.forEach((postEntity) => {
+        if (postEntity.seq === seq) {
+          postContent = postEntity;
+        }
+      });
+
+      this.$router.push({
+        name: "BlogPostContent",
+        params: { postContent: postContent },
+      });
     },
   },
 

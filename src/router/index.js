@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 // import Blog from "@/App.vue";
 import BlogPostList from "@/views/BlogPostList";
 import BlogWriting from "@/views/BlogWriting";
+import BlogPostContent from "@/views/BlogPostContent";
 
 Vue.use(VueRouter);
 
@@ -15,6 +16,12 @@ const routes = [
   {
     path: "/writing",
     component: BlogWriting,
+  },
+  {
+    path: "/postContent",
+    name: "BlogPostContent",
+    component: BlogPostContent,
+    props: true,
   },
   { path: "*", component: NotFound },
 ];
