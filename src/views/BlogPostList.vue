@@ -46,13 +46,18 @@
 </template>
 
 <script>
-import PostList from "@/components/datas/boardPostList";
+// import PostList from "@/components/datas/boardPostList";
 import { mapMutations } from "vuex";
+import axios from "axios";
+
+const localAxios = axios.create({
+  baseURL: "http://localhost:9944/api/post",
+});
 
 export default {
   data() {
     return {
-      postList: PostList,
+      postList: [],
     };
   },
 
@@ -93,58 +98,19 @@ export default {
   // },
 
   // vue가 마운트 되었을 때?
-  mounted() {
+  async mounted() {
     // 게시글 내림차순 정렬
-    this.postList.sort((e1, e2) => {
-      if (
-        Number(e1.createtime.substr(0, 4)) != Number(e2.createtime.substr(0, 4))
-      )
-        return -(
-          Number(e1.createtime.substr(0, 4)) -
-          Number(e2.createtime.substr(0, 4))
-        );
-      else if (
-        Number(e1.createtime.substr(5, 2)) != Number(e2.createtime.substr(5, 2))
-      )
-        return -(
-          Number(e1.createtime.substr(5, 2)) -
-          Number(e2.createtime.substr(5, 2))
-        );
-      else if (
-        Number(e1.createtime.substr(8, 2)) != Number(e2.createtime.substr(8, 2))
-      )
-        return -(
-          Number(e1.createtime.substr(8, 2)) -
-          Number(e2.createtime.substr(8, 2))
-        );
-      else if (
-        Number(e1.createtime.substr(11, 2)) !=
-        Number(e2.createtime.substr(11, 2))
-      )
-        return -(
-          Number(e1.createtime.substr(11, 2)) -
-          Number(e2.createtime.substr(11, 2))
-        );
-      else if (
-        Number(e1.createtime.substr(14, 2)) !=
-        Number(e2.createtime.substr(14, 2))
-      )
-        return -(
-          Number(e1.createtime.substr(14, 2)) -
-          Number(e2.createtime.substr(14, 2))
-        );
-      else if (
-        Number(e1.createtime.substr(17, 2)) !=
-        Number(e2.createtime.substr(17, 2))
-      )
-        return -(
-          Number(e1.createtime.substr(17, 2)) -
-          Number(e2.createtime.substr(17, 2))
-        );
-    });
+    await localAxios
+      .get("/get-post-list?sort-direction=desc&sort-by=createtime")
+      .then((res) => {
+        this.postList = res.data;
+      });
 
     // postList의 각 요소에 show라는 키로 false 값을 set 한다.
     this.postList.forEach((element) => {
+      if (element.tags != null) {
+        element.tags = element.tags.replaceAll('"', "").split(",");
+      }
       this.$set(element, "show", false);
     });
 
