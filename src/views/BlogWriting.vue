@@ -65,7 +65,7 @@
       <v-row class="mx-0 pt-0 mb-2">
         <v-col class="text-right mx-0 px-0">
           <v-btn text-align x-large @click="regist">
-            저장
+            글쓰기
           </v-btn>
         </v-col>
       </v-row>
@@ -74,6 +74,12 @@
 </template>
 <script>
 import CategoryList from "@/components/datas/boardCategorys";
+import axios from "axios";
+
+const localAxios = axios.create({
+  baseURL: "http://localhost:9944/api",
+});
+
 export default {
   data() {
     return {
@@ -114,12 +120,29 @@ export default {
     inputContent() {
       this.submit.content = this.$refs.toastEditor.invoke("getHTML");
     },
-    // 저장 버튼 클릭 => submit? regist?
+    // 글쓰기 버튼 클릭 => submit? regist?
     regist() {
       console.log("타이틀 - " + this.submit.title);
       console.log("본문 - " + this.submit.content);
-      console.log("태그들 - " + this.submit.tags);
+      console.log("태그들 - " + this.submit.tags.toString);
       console.log("카테고리 - " + this.category.category);
+      let jsonData = {
+        seq: 33,
+        title: this.submit.title,
+        content: this.submit.content,
+        tags: this.submit.tags.join(),
+        category: this.category.category,
+      };
+
+      localAxios
+        .post("/post", jsonData, {
+          headers: { "Content-Type": "application/json" },
+        })
+        .then((res) => {
+          if (res.status === 200) {
+            console.log("등록완료!!!");
+          }
+        });
     },
   },
   mounted() {

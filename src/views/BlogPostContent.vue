@@ -23,7 +23,6 @@ export default {
 
   props: {
     postContent: {
-      type: JSON,
       default: "",
     },
   },

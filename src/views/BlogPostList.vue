@@ -51,7 +51,7 @@ import { mapMutations } from "vuex";
 import axios from "axios";
 
 const localAxios = axios.create({
-  baseURL: "http://localhost:9944/api/post",
+  baseURL: "http://localhost:9944/api",
 });
 
 export default {
@@ -101,7 +101,7 @@ export default {
   async mounted() {
     // 게시글 내림차순 정렬
     await localAxios
-      .get("/get-post-list?sort-direction=desc&sort-by=createtime")
+      .get("/post?sort-direction=desc&sort-by=createtime")
       .then((res) => {
         this.postList = res.data;
       });
